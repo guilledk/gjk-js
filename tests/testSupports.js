@@ -1,14 +1,20 @@
-import { vec3 } from "/lib/gl-matrix/index.js";
+import { vec3 } from "../lib/gl-matrix/index.js";
 
-import { Shape } from "/gjk.js";
-import { topRight, topLeft, botRight, botLeft, rectVerts, triVerts } from "/tests/constants.js";
-import { assert, runTest } from "/tests/common.js";
+import { Shape } from "../gjk.js";
+import { 
+    topRight,
+    topLeft,
+    botRight,
+    botLeft,
+    rectVerts, triVerts
+} from "./constants.js";
+
+import { assert, runTest } from "./common.js";
 
 
 function versorRad(rad) {
     return vec3.fromValues(Math.cos(rad), -Math.sin(rad), 0);
 }
-window.versor = versorRad;
 
 
 function testCenter() {
@@ -46,8 +52,6 @@ function testCenter() {
 }
 
 
-runTest(testCenter, document.getElementById("label_test_center"));
-
 function testSupports() {
 
     let a = new Shape([0, 0, 0], [1, 1, 1], rectVerts);
@@ -71,9 +75,6 @@ function testSupports() {
         "wrong support for botRight dir");
 
 }
-
-
-runTest(testSupports, document.getElementById("label_test_support"));
 
 
 function testSupportsMoved() {
@@ -108,9 +109,6 @@ function testSupportsMoved() {
 }
 
 
-runTest(testSupportsMoved, document.getElementById("label_test_support_moved"));
-
-
 function testSupportsRotated() {
     let a = new Shape([0, 0, 0], [1, 1, 1], triVerts);
 
@@ -132,8 +130,6 @@ function testSupportsRotated() {
         vec3.equals(supp, target),
         "wrong rotated support for direction PI " + supp + " should be " + target);
 }
-
-runTest(testSupportsRotated, document.getElementById("label_test_support_rotated"));
 
 
 function testSupportsMovedRotated() {
@@ -160,4 +156,9 @@ function testSupportsMovedRotated() {
         "wrong rotated support for direction PI " + supp + " should be " + target);
 }
 
-runTest(testSupportsMovedRotated, document.getElementById("label_test_support_moved_rotated"));
+
+runTest(testCenter);
+runTest(testSupports);
+runTest(testSupportsMoved);
+runTest(testSupportsRotated);
+runTest(testSupportsMovedRotated);

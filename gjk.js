@@ -1,4 +1,7 @@
-import { vec3, mat4 } from "/lib/gl-matrix/index.js";
+import { vec3, mat4 } from "./lib/gl-matrix/index.js";
+
+
+// Guillermo Rodriguez 2021 - See LICENSE.txt
 
 
 // TODO: EPA [
@@ -8,8 +11,8 @@ import { vec3, mat4 } from "/lib/gl-matrix/index.js";
 
 function tripleProduct(out, a, b, c) {
     let tmp = vec3.create();
-    vec3.cross(tmp, b, c);
-    vec3.cross(out, a, tmp);
+    vec3.cross(tmp, a, b);
+    vec3.cross(out, tmp, c);
 }
 
 
@@ -19,6 +22,8 @@ class Shape {
         this.scale = scale;
         this.rotation = 0;
         this.rawVerts = rawVerts;
+
+        this._debugColor = "#C6E6FB";
     }
 
     modelMatrix() {
@@ -66,6 +71,20 @@ class Shape {
         }
 
         return furthest;
+    }
+
+    // debug
+    
+    draw(ctx) {
+        const verts = this.vertices();
+        ctx.beginPath();
+        ctx.fillStyle = this._debugColor;
+        ctx.moveTo(...verts[0]);
+        for (let i = 1; i < verts.length; i++)
+            ctx.lineTo(...verts[i]);
+
+        ctx.closePath();
+        ctx.fill();
     }
 };
 

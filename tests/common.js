@@ -3,12 +3,20 @@ export function assert(bool, msg) {
         throw "Assertion failed: " + msg;
 }
 
-export function runTest(testFn, resultElement) {
+
+const resultTable = document.getElementById("test_results_table");
+export function runTest(testFn) {
+    const resultElement = resultTable.rows[0].cloneNode(true);
+    resultElement.cells[0].innerHTML = testFn.name;
+    const statusElement = resultElement.cells[1];
+    statusElement.className = "testResult";
+    statusElement.innerHTML = "...";
+    resultTable.appendChild(resultElement);
     try {
         testFn();
-        resultElement.innerHTML = "<p style=\"color:#03c800;\">PASSED</p>"
+        statusElement.innerHTML = "<p style=\"color:#03c800;\">PASSED</p>"
     } catch(error) {
         console.error(error);
-        resultElement.innerHTML = "<p style=\"color:#e33a3a;\">FAILED</p>";
+        statusElement.innerHTML = "<p style=\"color:#e33a3a;\">FAILED</p>";
     }
 }

@@ -1,8 +1,8 @@
-import { vec3 } from "/lib/gl-matrix/index.js";
+import { vec3 } from "../lib/gl-matrix/index.js";
 
-import { Shape, GJKContext } from "/gjk.js";
-import { rectVerts, triVerts } from "/tests/constants.js";
-import { assert, runTest } from "/tests/common.js";
+import { Shape, GJKContext } from "../gjk.js";
+import { rectVerts, triVerts } from "./constants.js";
+import { assert, runTest } from "./common.js";
 
 
 function testRectTrue() {
@@ -16,9 +16,6 @@ function testRectTrue() {
 }
 
 
-runTest(testRectTrue, document.getElementById("label_test_gjk_rect_true"));
-
-
 function testRectFalse() {
 
     let a = new Shape([0, 0, 0], [1, 1, 1], rectVerts);
@@ -28,9 +25,6 @@ function testRectFalse() {
 
     assert(!ctx.performTest(), "passed gjk collision test");
 }
-
-
-runTest(testRectFalse, document.getElementById("label_test_gjk_rect_false"));
 
 
 function testTriangleTrue() {
@@ -44,8 +38,6 @@ function testTriangleTrue() {
 
 }
 
-runTest(testTriangleTrue, document.getElementById("label_test_gjk_tri_true"));
-
 
 function testTriangleFalse() {
 
@@ -57,8 +49,6 @@ function testTriangleFalse() {
     assert(!ctx.performTest(), "passed gjk collision test");
 
 }
-
-runTest(testTriangleTrue, document.getElementById("label_test_gjk_tri_false"));
 
 
 function testTriangleRotatedTrue() {
@@ -74,8 +64,6 @@ function testTriangleRotatedTrue() {
 
 }
 
-runTest(testTriangleRotatedTrue, document.getElementById("label_test_gjk_tri_rot_true"));
-
 
 function testTriangleRotatedFalse() {
 
@@ -86,16 +74,19 @@ function testTriangleRotatedFalse() {
 
     assert(!(new GJKContext(a, b).performTest()), "passed gjk collision test");
     
-    a = new Shape([0,    0, 0], [1, 1, 1], triVerts);
+    a = new Shape([0, 0, 0], [1, 1, 1], triVerts);
     b = new Shape([1.1, -1, 0], [1, 1, 1], triVerts);
 
     b.rotation = Math.PI;
-
-    console.log(a.vertices());
-    console.log(b.vertices());
 
     assert(!(new GJKContext(a, b).performTest()), "passed gjk collision test");
 
 }
 
-runTest(testTriangleRotatedFalse, document.getElementById("label_test_gjk_tri_rot_false"));
+
+runTest(testRectTrue);
+runTest(testRectFalse);
+runTest(testTriangleTrue);
+runTest(testTriangleFalse);
+runTest(testTriangleRotatedTrue);
+runTest(testTriangleRotatedFalse);
