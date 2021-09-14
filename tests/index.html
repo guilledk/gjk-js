@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>tests</title>
+</head>
+
+<style>
+    body {
+        height: 100vh;
+        color: #ccc;
+        background: #111;
+        font: 15px Arial, sans-serif;
+    }
+</style>
+
+<body>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>Shape center</td>
+        <td id="label_test_center">...</td>
+    </tr>
+    <tr>
+        <td>Shape support</td>
+        <td id="label_test_support">...</td>
+    </tr>
+    <tr>
+        <td>Shape support moved</td>
+        <td id="label_test_support_moved">...</td>
+    </tr>
+    <tr>
+        <td>Shape support rotated</td>
+        <td id="label_test_support_rotated">...</td>
+    </tr>
+    <tr>
+        <td>Shape support moved rotated</td>
+        <td id="label_test_support_moved_rotated">...</td>
+    </tr>
+    <tr>
+        <td>Rect Collision: true</td>
+        <td id="label_test_gjk_rect_true">...</td>
+    </tr>
+    <tr>
+        <td>Rect Collision: false</td>
+        <td id="label_test_gjk_rect_false">...</td>
+    </tr>
+    <tr>
+        <td>Triangle Collision: true</td>
+        <td id="label_test_gjk_tri_true">...</td>
+    </tr>
+    <tr>
+        <td>Triangle Collision: false</td>
+        <td id="label_test_gjk_tri_false">...</td>
+    </tr>
+    <tr>
+        <td>Triangle Rotated Collision: true</td>
+        <td id="label_test_gjk_tri_rot_true">...</td>
+    </tr>
+    <tr>
+        <td>Triangle Rotated Collision: false</td>
+        <td id="label_test_gjk_tri_rot_false">...</td>
+    </tr>
+    </table> 
+    <script src="/tests/testSupports.js" type="module"></script>
+    <script src="/tests/testCollision.js" type="module"></script>
+</body>
+</html>
